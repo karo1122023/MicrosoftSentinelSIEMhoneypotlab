@@ -1,4 +1,4 @@
-<h1>Mircosoft Sentinel Home Lab</h1>
+<h1>Mircosoft Azure Sentinel Home Lab</h1>
 
  ### [YouTube Demonstration](https://youtu.be/7eJexJVCqJo)
 
