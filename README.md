@@ -58,60 +58,42 @@ Because I have a MAC, I need to download Microsoft Remote Desktop. After it's be
 <br />
 <br />
 On the actual virtual machine, I will turn firewall so that people on the internet can discover it faster. I will click windows defender firewall > go to advanced settings > windows defender firewall properties > turn firewall state off in domain, private profile, public profile: <br/>
-<img src="https://i.imgur.com/1fbNnrB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/5yxQ47D.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 By clicking on event viewer to view the logs > windows logs > security, I can see all of the security events on this virtual machine. And specifically, event ID 4625, which says audit failure. This specific log represents all the failures of attackers trying to log into the virtual machine through the remote desktop. These audit logs even show me all of the IP addresses people are using to try to log into my virtual machine. The IP addresses from these audit logs will be taken using a powershell script and uploaded into an IP geolocation API (ipgeolocation.io). The powershell script then takes the API's results and outputs it into a file, which I will then upload into Log Analytics Workspace:  <br/>
-<img src="https://i.imgur.com/UxdNA5t.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/6NucQv8.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/JOdySKo.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/J3jH9Tt.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Sanitization complete:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+I will now run a powershell script within the virtual machine on Windows Powershell ISE. [ https://github.com/joshmadakor1/Sentinel-Lab/blob/main/Custom_Security_Log_Exporter.ps1 ]. This link provides the script used to ingest the audit logs from my virtual machine into the geolocation API. In order for the script to be able to return the specific geographic information of the attackers, I need to create an account with ipgeolocation.io to receive my own API key which I will paste into the powershell script in the API key location. You can see the results of running the powershell script below. The script also creates a geodata logon log file of the results named failed_rdp: <br/>
+<img src="https://i.imgur.com/l0xqGUP.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/3R9EhhF.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Sanitization complete:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+I will copy the contents of the failed_rdp file and save it on a file on my personal computer. Next, I will navigate to Log Analytics Workspace on Microsoft Azure to create a custom log that will contain the geodata. I will click on tables under settings > click on create new custom log MMA based > and upload the failed_rdp file:  <br/>
+<img src="https://i.imgur.com/pvXfkAF.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/w8sIcwc.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Sanitization complete:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+After navigating to the logs tab, I will paste the code contained in the first picture below into the query. This code extracts the latitude and longitude, username, source host (IP address of host that attempted to login), etc values from the results; it parses out the log data. I will then run the query:  <br/>
+<img src="https://i.imgur.com/b01NXOa.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/kz3nJio.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/1mEnHET.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Sanitization complete:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Next I click on workbooks to set up the geomap > add workbook > edit > remove the default widgets > add query > paste previous code used into the query > run the query > name the workbook (FAILED RDP WORLD_MAP). The code once again parses out the data aggregated from the failed_rdp log file that contains all the geodata: <br/>
+<img src="https://i.imgur.com/NI1KS2Y.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Sanitization complete:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Finally, I will click visualize and select map > under map settings > metrics > select label as label to get the IPs of the countries. I have successfully used the Microsoft Azure Sentinel SIEM to create a world map containing attacker geodata from log files allowing me to see all of the countries the attacks were coming from on the map: <br/>
+<img src="https://i.imgur.com/ioQ5cYD.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Sanitization complete:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Sanitization complete:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Sanitization complete:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Sanitization complete:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Sanitization complete:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Sanitization complete:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Observe the wiped disk:  <br/>
-<img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
+<h2>Conclusions:</h2>
+This was my first home lab, and this home lab taught me how to set up a virtual machine in the cloud, use Microsoft Azure SIEM to parse out and view data from logs, how to analyze log files, how Powershell works, and much more!
+
 </p>
 
 <!--
