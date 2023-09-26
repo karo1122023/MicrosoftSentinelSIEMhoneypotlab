@@ -37,7 +37,7 @@ Now I will head over to Microsoft Defender for Cloud > envrionment settings > az
 <br />
 I will turn on the servers in order to be able to do the data collection. Then I will navigate to the data collection tab and turn on all events, which will enable the ability for logs to be gathered from the Windows virtual machine straight into the Logs Analytics Workspace:  <br/>
 <img src="https://i.imgur.com/6TZ3CLG.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/6TZ3CLG.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/6P8WFGT.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 Next, I will head back over to Log Analytics Workspace and have it connect to the virtual machine (honeypot-vm): <br/>
