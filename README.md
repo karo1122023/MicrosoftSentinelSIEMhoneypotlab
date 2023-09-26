@@ -49,15 +49,15 @@ Now I will set up Microsoft Azure Sentinel, which is the SIEM I will use to visu
 <img src="https://i.imgur.com/dtVYOv0.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Now it's time to navigate to virtual machine. I will then click on honeypot-vm > click on the public IP address and copy it: <br/>
+Now it's time to navigate to the virtual machine. I will then click on honeypot-vm > click on the public IP address and copy it: <br/>
 <img src="https://i.imgur.com/P3IFmqZ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Because I have a MAC, I need to download Microsoft Remote Desktop. After it's been downloaded and launched, I will paste in the IP address of the honeypot-vm I copied into add and then click add > double click on the vm with the IP address > enter in user credentials set up for the honeypot-vm:  <br/>
+Because I have a MAC, I need to download Microsoft Remote Desktop. After it's been downloaded and launched, I will paste in the IP address of the honeypot-vm I copied into add and then click add > double click on the virtual machine with the IP address > enter in user credentials set up for the honeypot-vm:  <br/>
 <img src="https://i.imgur.com/lF0Q6t5.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-On the actual virtual machine, I will turn firewall so that people on the internet can discover it faster. I will click windows defender firewall > go to advanced settings > windows defender firewall properties > turn firewall state off in domain, private profile, public profile: <br/>
+On the actual virtual machine, I will turn off the firewall so that people on the internet can discover it faster. I will click windows defender firewall > go to advanced settings > windows defender firewall properties > turn firewall state off in domain, private profile, public profile: <br/>
 <img src="https://i.imgur.com/5yxQ47D.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
@@ -82,7 +82,7 @@ After navigating to the logs tab, I will paste the code contained in the first p
 <img src="https://i.imgur.com/1mEnHET.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Next I click on workbooks to set up the geomap > add workbook > edit > remove the default widgets > add query > paste previous code used into the query > run the query > name the workbook (FAILED RDP WORLD_MAP). The code once again parses out the data aggregated from the failed_rdp log file that contains all the geodata: <br/>
+Next, I will click on workbooks to set up the geomap > add workbook > edit > remove the default widgets > add query > paste previous code used into the query > run the query > name the workbook (FAILED RDP WORLD_MAP). The code once again parses out the data aggregated from the failed_rdp log file that contains all the geodata: <br/>
 <img src="https://i.imgur.com/NI1KS2Y.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
