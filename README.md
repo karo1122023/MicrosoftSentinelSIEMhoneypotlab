@@ -15,7 +15,7 @@ In this home lab, I setup Microsoft Azure Sentinel (SIEM) and connect it to a li
 
 <h2>Environments Used </h2>
 
-- <b>Windows 10 Pro, version 22H2 - x64 Gen2</b> (22H2)
+- <b>Windows 10 Pro, version 22H2 - x64 Gen2</b> 
 
 <h2>Home Lab walk-through:</h2>
 
