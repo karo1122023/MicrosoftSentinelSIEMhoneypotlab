@@ -28,7 +28,7 @@ I will then create a new open firewall (DANGER_ANY_IN) and create an inbound rul
 <br />
 <br />
 Next, I will navigate to Log Analyatics Workspace and create a Log Analytics Workspace called law-honeypot1. This is where all the audit logs from the Windows event logs and security logs will be stored. It will contain geographic details of where the attackers are coming from: <br/>
-<img src="https://i.imgur.com/fIJkJUP.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/7Rl7Ol5.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 Now I will head over to Microsoft Defender for Cloud > envrionment settings > azure subcription > expand down to click on law-honeypot1: <br/>
@@ -36,17 +36,17 @@ Now I will head over to Microsoft Defender for Cloud > envrionment settings > az
 <br />
 <br />
 I will turn on the servers in order to be able to do the data collection. Then I will navigate to the data collection tab and turn on all events, which will enable the ability for logs to be gathered from the Windows virtual machine straight into the Logs Analytics Workspace:  <br/>
-<img src="https://i.imgur.com/6TZ3CLG.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/YKNeoPJ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <img src="https://i.imgur.com/6P8WFGT.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 Next, I will head back over to Log Analytics Workspace and have it connect to the virtual machine (honeypot-vm): <br/>
-<img src="https://i.imgur.com/RmCTrgi.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/pYw1AJY.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 Now I will set up Microsoft Azure Sentinel, which is the SIEM I will use to visualize the attack data. I will click microsoft sentinel > click create microsoft sentinel > click law-honeypot1 > click add:  <br/>
 <img src="https://i.imgur.com/BQfLVSo.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/dtVYOv0.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/Oxj18Y0.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 Now it's time to navigate to the virtual machine. I will then click on honeypot-vm > click on the public IP address and copy it: <br/>
